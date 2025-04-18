@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+	<li class="li"><a href="{% url 'home' %}">Home</a></li>
+	<li class="li"><a class="active" href="{% url 'signup' %}">Sign Up</a></li>
+	<li class="li"><a href="{% url 'login' %}">Log In</a></li>
+	<li class="li"><a href="{% url 'about' %}">About</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="form-style" style="max-width: 500px; margin: 50px auto; padding: 30px; background-color: rgba(255, 255, 255, 0.9); border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+	<h1 style="text-align: center; color: #4CAF50; margin-bottom: 20px;">Sign Up</h1>
+	<form class="site-form" action="." method="post" onsubmit="return validateForm()">
+		{% csrf_token %}
+		{{ form.as_p }} <!-- Form fields styled automatically with <p> tags -->
+		
+		<!-- Gmail Field -->
+		<label for="id_email">Gmail:</label>
+		<input type="email" id="id_email" name="email" required placeholder="example@gmail.com">
+		<small style="color: red;" id="emailError"></small>
+		<br><br>
+
+		<input class="submit" type="submit" value="Sign Up" style="width: 100%; padding: 10px 0; font-size: 16px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease;">
+	</form>
+</div>
+
+<script type="text/javascript">
+	// Function to validate email format (only Gmail allowed)
+	function validateForm() {
+		let email = document.getElementById("id_email").value;
+		let emailError = document.getElementById("emailError");
+
+		let emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/; // Only Gmail addresses
+
+		emailError.innerHTML = "";
+
+		// Gmail validation
+		if (!emailPattern.test(email)) {
+			emailError.innerHTML = "Please enter a valid Gmail address (e.g., example@gmail.com).";
+			return false;
+		}
+
+		return true;
+	}
+</script>
+{% endblock %}

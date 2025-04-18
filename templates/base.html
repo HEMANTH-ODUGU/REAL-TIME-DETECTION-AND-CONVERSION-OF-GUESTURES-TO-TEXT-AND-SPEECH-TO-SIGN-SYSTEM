@@ -1,0 +1,144 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Audio To Sign Language Tool{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+    <!-- Google Fonts for custom fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("{% static 'background.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        /* Navbar Styling */
+        ul#nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.7); /* More transparent */
+            display: flex;
+            justify-content: center; /* Center align nav items */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        ul#nav li {
+            margin: 0 15px; /* Adding space between nav items */
+        }
+
+        ul#nav li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: 0.3s ease;
+            border-radius: 4px;
+        }
+
+        ul#nav li a:hover {
+            background-color: #4CAF50;
+        }
+
+        ul#nav li a.active {
+            background-color: #4CAF50;
+        }
+
+        /* Header Styling */
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-top: 50px;
+            font-size: 3em;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Main Wrapper */
+        .wrapper {
+            max-width: 1000px;
+            margin: 80px auto;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            color: #333;
+        }
+
+        /* Footer styling */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            ul#nav {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            ul#nav li {
+                margin: 10px 0;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .wrapper {
+                padding: 20px;
+                margin: 40px auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Text or Audio To Sign-Sign To Text</h1>
+    </header>
+
+    <!-- Navigation Bar -->
+    <ul id="nav">
+      {% block navbar %}
+        <li class="li"><a class="active" href="{% url 'home' %}">Home</a></li>
+        {% if not user.is_authenticated %}
+          <li class="li"><a href="{% url 'signup' %}">Sign Up</a></li>
+        {% endif %}
+        {% if user.is_authenticated %}
+          <li class="li"><a href="{% url 'logout' %}">Log Out</a></li>
+          <li class="li"><a href="{% url 'sign' %}">Sign-to-Text</a></li>
+        {% else %}
+          <li class="li"><a href="{% url 'login' %}">Log In</a></li>
+        {% endif %}
+          <li class="li"><a href="{% url 'about' %}">About</a></li>
+      {% endblock %}
+    </ul>
+
+    <!-- Main Content Wrapper -->
+    <div class="wrapper">
+        {% block content %}
+        <!-- Your page content goes here -->
+        {% endblock %}
+    </div>
+
+</body>
+</html>

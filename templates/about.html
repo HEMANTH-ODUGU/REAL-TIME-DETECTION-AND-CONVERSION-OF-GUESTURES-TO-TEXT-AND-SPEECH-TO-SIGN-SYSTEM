@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+	<li class="li"><a href="{% url 'home' %}">Home</a></li>
+	<li class="li"><a href="{% url 'signup' %}">Sign Up</a></li>
+	<li class="li"><a href="{% url 'login' %}">Log In</a></li>
+	<li class="li"><a class="active" href="{% url 'about' %}">About</a></li>
+{% endblock %}
+
+
+{% block content %}
+	<div class="about-section" style="max-width: 800px; margin: 50px auto; padding: 20px; background-color: rgba(255, 255, 255, 0.9); border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+		<h2 style="text-align: center; color: #4CAF50; margin-bottom: 20px;">About the Project</h2>
+		
+		<hr>
+
+		<h3 style="color: #333;">Audio to Sign Language Conversion</h3>
+		<p style="font-size: 1.1em; line-height: 1.6; color: #333;">
+			The first component of this tool involves converting audio input into sign language. Initially, speech recognition technology is utilized to capture and transcribe spoken words into written text. This process forms the basis for the subsequent conversion into sign language. However, translating text into sign language is complex, as sign language has its own unique grammar and syntax, differing significantly from spoken language.
+		</p>
+		<p style="font-size: 1.1em; line-height: 1.6; color: #333;">
+			Machine learning models, especially those trained on extensive sign language datasets, are employed to interpret the text and generate corresponding sign language gestures. The final step is the visualization of these gestures, typically done using a 3D avatar or animated character. This avatar performs the sign language gestures, and it is crucial that these animations are fluid and accurate to ensure effective communication.
+		</p>
+
+		<hr>
+
+		<h3 style="color: #333;">Sign Language to Text Conversion</h3>
+		<p style="font-size: 1.1em; line-height: 1.6; color: #333;">
+			The second component reverses the process by converting sign language into text. This begins with capturing sign language gestures through a camera. OpenCV, a powerful tool for image processing and computer vision tasks, is used to detect and analyze the sign language gestures. 
+		</p>
+		<p style="font-size: 1.1em; line-height: 1.6; color: #333;">
+			Machine learning algorithms, particularly Convolutional Neural Networks (CNNs) trained on sign language datasets, are employed to recognize and interpret these gestures. The recognized gestures are then converted back into text, providing a written transcription of the sign language.
+		</p>
+
+		<hr>
+
+	</div>
+{% endblock %}
